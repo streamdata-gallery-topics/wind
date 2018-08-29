@@ -3,12 +3,10 @@ swagger: "2.0"
 x-collection-name: AWS EC2 Systems Manager
 x-complete: 0
 info:
-  title: Amazon EC2 Systems Manager API Describe Maintenance Window Execution Task
-    Invocations
+  title: Amazon EC2 Systems Manager API Describe Maintenance Window Execution Tasks
   version: 1.0.0
-  description: |-
-    Retrieves the individual task executions (one per target) for a particular task executed
-       as part of a Maintenance Window execution.
+  description: For a given Maintenance Window execution, lists the tasks that were
+    executed.
 schemes:
 - http
 produces:
@@ -194,6 +192,39 @@ paths:
       - Execution
       - Task
       - Invocations
+  /?Action=DescribeMaintenanceWindowExecutionTasks:
+    get:
+      summary: Describe Maintenance Window Execution Tasks
+      description: For a given Maintenance Window execution, lists the tasks that
+        were executed.
+      operationId: describeMaintenanceWindowExecutionTasks
+      x-api-path-slug: actiondescribemaintenancewindowexecutiontasks-get
+      parameters:
+      - in: query
+        name: Filters
+        description: Optional filters used to scope down the returned tasks
+        type: string
+      - in: query
+        name: MaxResults
+        description: The maximum number of items to return for this call
+        type: string
+      - in: query
+        name: NextToken
+        description: The token for the next set of items to return
+        type: string
+      - in: query
+        name: WindowExecutionId
+        description: The ID of the Maintenance Window execution whose task executions
+          should be   retrieved
+        type: string
+      responses:
+        200:
+          description: OK
+      tags:
+      - Maintenance
+      - Window
+      - Execution
+      - Tasks
 x-streamrank:
   polling_total_time_average: 0
   polling_size_download_average: 0
